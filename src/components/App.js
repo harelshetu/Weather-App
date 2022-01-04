@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Search from "./Search";
 import Weather from "./Weather";
-import get from "./utils/api";
+import get from "../utils/api";
 
 const App = () => {
   const [city, setCity] = useState("");
