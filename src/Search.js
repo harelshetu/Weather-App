@@ -1,13 +1,16 @@
 import {useState} from "react";
 
 
-const Search = () =>{
+const Search = (props) =>{
 
-    const [city, setCity] = useState('');
+const [city, setCity] = useState('');
 
 const handleSubmit = e =>{
     e.preventDefault();
-    console.log(city);
+    console.log(props);
+    if(city){
+        props.passDataFunc(city);
+    }
 }
 
 
