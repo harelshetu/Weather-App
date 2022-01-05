@@ -5,7 +5,6 @@ const Search = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(props);
     if (city) {
       props.passDataFunc(city);
     }

@@ -4,6 +4,7 @@ import Weather from "./Weather";
 import get from "../utils/api";
 
 const App = () => {
+
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState({});
   const [error, setError] = useState("");
@@ -12,10 +13,14 @@ const App = () => {
     if (newCity !== city) {
       setCity(newCity);
       setWeatherData({});
+      setError("");
     }
   };
 
+  
+
   useEffect(() => {
+    
     const fetchData = async () => {
       const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
       try {
@@ -29,14 +34,7 @@ const App = () => {
           humidity,
         };
         console.log(newWeatherData);
-
-        if (JSON.stringify(weatherData) !== JSON.stringify(newWeatherData)) {
-          setWeatherData(newWeatherData);
-        }
-
-        if (error) {
-          setError("");
-        }
+        setWeatherData(newWeatherData);
       } catch (error) {
         console.log(error);
         if (error.response.status < 500) {
@@ -44,17 +42,20 @@ const App = () => {
         } else {
           setError("there is internal error");
         }
-        setWeatherData({ temp: "", iconSrc: "", humidity: "" });
       }
+  
     };
-
-    city && fetchData();
+    if (city) {
+      fetchData();
+    }
   }, [city]);
 
   return (
     <div>
       <Search passDataFunc={handleCity} />
-      {weatherData.temp && <Weather city={city} weatherData={weatherData} />}
+      { Object.keys(weatherData).length !== 0 && (
+        <Weather city={city} weatherData={weatherData} />
+      )}
       <h1>{error && <div>{error}</div>}</h1>
     </div>
   );
