@@ -1,4 +1,4 @@
-const Weather = (props) => {
+const Weather = props => {
  
   const {
     city,

@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import Search from "./Search";
-import Weather from "./Weather";
-import get from "../utils/api";
-import ErrorMessage from "./ErrorMessage";
+import { useState, useEffect } from 'react';
+import Search from './Search';
+import Weather from './Weather';
+import get from '../utils/api';
+import ErrorMessage from './ErrorMessage';
 
 const App = () => {
-  const [city, setCity] = useState("barcelona");
+  const [city, setCity] = useState('barcelona');
   const [weatherData, setWeatherData] = useState({});
   const [errors, setErrors] = useState([]);
 
@@ -24,9 +24,9 @@ const App = () => {
       const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
       try {
         const data = await get(URL);
-        const temp = data["main"].temp;
+        const temp = data['main'].temp;
         const iconSrc = `https://openweathermap.org/img/w/${data["weather"][0].icon}.png`;
-        const description = data["weather"].description;
+        const description = data['weather'].description;
         const newWeatherData = {
           temp,
           iconSrc,
@@ -38,12 +38,12 @@ const App = () => {
         if (error.response.status < 500) {
           setErrors([{
             id: 0,
-            message: "This city isn't exist, please enter valid city"
+            message: 'This city isn\'t exist, please enter valid city'
           }]);
         } else {
           setErrors([{
             id: 0,
-            message: "there is internal error"
+            message: 'there is internal error'
           }]);
         }
       }
