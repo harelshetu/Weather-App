@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useState,useEffect} from "react";
+import validateInput from "../utils/validation";
 
-const Search = (props) => {
+const Search = ({passDataFunc}) => {
+  
   const [city, setCity] = useState("");
-
+  const [isUserSumbit, setIsUserSumbit] = useState(false);
+  const [inputValidationErrors,setInputValidationErrors] = useState([]);
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (city) {
-      props.passDataFunc(city);
-    }
+    setInputValidationErrors(validateInput(city));
+    setIsUserSumbit(true);
   };
+
+  useEffect(() => {
+
+    if (isUserSumbit) {
+      passDataFunc(city, inputValidationErrors);
+    }
+  }, [inputValidationErrors]);
 
   return (
     <div>
