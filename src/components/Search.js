@@ -24,15 +24,22 @@ const Search = ({passDataFunc}) => {
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="text"
-          placeholder="Enter city..."
-          value={city}
-          onChange={(e) => {
-            setCity(e.target.value);
-          }}
-        ></input>
-        <button type="submit">Search</button>
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control bg-light"
+            placeholder="Enter city..."
+            value={city}
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+          ></input>
+          <div className="input-group-append">
+            <button className="btn btn-light" type="submit">
+              Search
+            </button>
+          </div>
+        </div>
       </form>
     </>
   );
