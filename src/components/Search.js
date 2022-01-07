@@ -1,9 +1,9 @@
-import { useState,useEffect} from "react";
-import validateInput from "../utils/validation";
+import { useState,useEffect} from 'react';
+import validateInput from '../utils/validation';
 
 const Search = ({passDataFunc}) => {
   
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState('');
   const [isUserSumbit, setIsUserSumbit] = useState(false);
   const [inputValidationErrors,setInputValidationErrors] = useState([]);
   
@@ -22,7 +22,7 @@ const Search = ({passDataFunc}) => {
   }, [inputValidationErrors]);
 
   return (
-    <div>
+    <>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
@@ -34,7 +34,7 @@ const Search = ({passDataFunc}) => {
         ></input>
         <button type="submit">Search</button>
       </form>
-    </div>
+    </>
   );
 };
 
