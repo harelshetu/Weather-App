@@ -26,6 +26,7 @@ const Search = ({passDataFunc}) => {
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="input-group">
           <input
+            data-testid="input"
             type="text"
             className="form-control bg-light"
             placeholder="Enter city..."
@@ -35,7 +36,7 @@ const Search = ({passDataFunc}) => {
             }}
           ></input>
           <div className="input-group-append">
-            <button className="btn btn-light" type="submit">
+            <button  data-testid="submit" className="btn btn-light" type="submit">
               Search
             </button>
           </div>
